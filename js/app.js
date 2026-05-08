@@ -2439,7 +2439,7 @@ async function sendAI() {
       throw new Error('API key app.js ішінде қойылмаған');
     }
 
-    const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+    const resp = await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
