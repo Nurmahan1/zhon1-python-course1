@@ -6,7 +6,7 @@
 // AI көмекші frontend арқылы жұмыс істейді.
 // ТӨМЕНДЕГІ API_KEY ішіне өз кілтіңізді қойыңыз.
 // ЕСКЕРТУ: frontend ішінде key ашық көрінеді, тек уақытша жоба үшін қолданыңыз.
-const OPENAI_API_KEY = "sk-proj-OSY_JERGE_API_KEY_QOY";
+const OPENAI_API_KEY = "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";
 
 const LECTURES = [
   {
