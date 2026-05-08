@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zhon1 — Python Курсы</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <button class="menu-btn" onclick="document.getElementById('sb').classList.toggle('open')">☰</button>
+  <a href="#" class="logo"><div class="logo-box">🐍</div>zhon1</a>
+  <div class="h-title">Python Бағдарламалау Курсы</div>
+  <nav class="top-nav">
+    <button class="top-nav-btn active" onclick="showPage('home', this)">Басты бет</button>
+    <button class="top-nav-btn" onclick="showPage('course', this)">Курс</button>
+    <button class="top-nav-btn" onclick="showPage('feedback', this)">Кері байланыс</button>
+    <button class="top-nav-btn" onclick="showPage('profile', this)">Профиль</button>
+    <button class="top-nav-btn" onclick="showPage('certificate', this)">Сертификат</button>
+  </nav>
+  <div class="h-prog">
+    <div class="h-prog-bar"><div class="h-prog-fill" id="hpf" style="width:0%"></div></div>
+    <span class="h-prog-txt" id="hpt">0/15</span>
+  </div>
+  <div class="h-score" id="hsc">⭐ 0 ұпай</div>
+  <div class="lang-switch">
+    <button class="lang-btn active" id="lbKZ" onclick="setLang('kz')">ҚЗ</button>
+    <button class="lang-btn" id="lbRU" onclick="setLang('ru')">РУ</button>
+  </div>
+  <div class="h-avatar" id="hAvatar" onclick="openProfileOrLogin()" style="cursor:pointer" title="Кіру / Профиль">АС</div>
+</header>
+
+
+
+<!-- PAGES -->
+<section class="page-section" id="page-home">
+  <div class="landing-hero">
+    <div class="landing-text">
+      <span class="mini-badge">🐍 Онлайн Python курсы</span>
+      <h1>Python бағдарламалауды нөлден бастап үйрен</h1>
+      <p>Бұл курс Python тілінің негіздерін, айнымалыларды, шартты операторларды, циклдерді, функцияларды, тізімдерді, файлдармен жұмысты және объектіге бағытталған бағдарламалауды үйретеді.</p>
+      <div class="landing-actions">
+        <button class="btn btn-next" onclick="showPage('course')">Курсты бастау</button>
+        <button class="btn btn-prev" onclick="showPage('certificate')">Сертификатты көру</button>
+      </div>
+    </div>
+    <div class="landing-image">
+      <img src="assets/python-hero.svg" alt="Python programming illustration">
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="info-ico">📚</div><h3>Не үйретеді?</h3><p>Python синтаксисі, есеп шығару, практика, тест, код жазу және нақты тапсырмалар.</p></div>
+    <div class="info-card"><div class="info-ico">⚡</div><h3>Артықшылығы</h3><p>Қарапайым түсіндірме, қазақ тілінде сабақ, AI көмекші, прогресс және ұпай жүйесі.</p></div>
+    <div class="info-card"><div class="info-ico">⏱️</div><h3>Қанша уақыт?</h3><p>Толық курс шамамен 30–45 сағатқа арналған. Әр лекция 2–4 сағат.</p></div>
+    <div class="info-card"><div class="info-ico">🧪</div><h3>Құрамы</h3><p>15 лекция және 30 семинар. Әр сабақта теория, практика және тест бар.</p></div>
+  </div>
+</section>
+
+<section class="page-section hidden" id="page-feedback">
+  <div class="simple-page-card">
+    <h1>Кері байланыс</h1>
+    <p>Курс бойынша сұрақтарыңыз болса, төмендегі байланыс арқылы хабарласыңыз.</p>
+    <div class="contact-list">
+      <div>👤 Автор: <strong>Нұрмахан Жантөре Cұлтанмұратұлы</strong></div>
+      <div>📞 Нөмір: <strong>+7 707 592 2006</strong></div>
+      <div>💬 Telegram: <strong>@w1nner_kz</strong></div>
+      <div>📘 Курс: <strong>Python бағдарламалау негіздері</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section hidden" id="page-profile">
+  <div class="simple-page-card">
+    <h1>Профиль</h1>
+    <div id="profileBoxHome">Профиль жүктелуде...</div>
+  </div>
+</section>
+
+<section class="page-section hidden" id="page-certificate">
+  <div class="simple-page-card">
+    <h1>Сертификат</h1>
+    <div id="certificateBoxHome">Сертификат курсты толық аяқтағанда шығады.</div>
+  </div>
+</section>
+
+<!-- SIDEBAR -->
+<div class="sidebar hidden" id="sb">
+  <div class="sb-top">
+    <div class="sb-top-title">Курс мазмұны</div>
+    <div class="sb-prog">
+      <div class="ring-wrap">
+        <svg width="42" height="42" viewBox="0 0 42 42">
+          <circle class="ring-bg" cx="21" cy="21" r="17"/>
+          <circle class="ring-fill" id="rf" cx="21" cy="21" r="17" style="stroke-dashoffset:107"/>
+        </svg>
+        <div class="ring-num" id="rn">0%</div>
+      </div>
+      <div class="sb-prog-info">
+        <div class="sb-prog-label" id="pl">0 лекция аяқталды</div>
+        <div class="sb-prog-sub">15 лекция · 30 семинар</div>
+      </div>
+    </div>
+  </div>
+  <div id="sbList"></div>
+</div>
+
+<!-- APP -->
+<div class="app hidden" id="page-course">
+<div class="main" id="mainArea">
+  <div class="breadcrumb">
+    <a href="#">zhon1</a><span>›</span>
+    <a href="#">Python Курсы</a><span>›</span>
+    <span id="bc">Лекция 1</span>
+  </div>
+  <div class="tab-bar">
+    <div class="tab active" data-tab="lesson">📖 Сабақ</div>
+    <div class="tab" data-tab="compiler">💻 Компилятор</div>
+  </div>
+  <div class="tab-content active" id="tab-lesson"></div>
+  <div class="tab-content" id="tab-compiler"></div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- CERTIFICATE MODAL -->
+<div class="cert-modal hidden" id="certModal">
+  <div class="cert-paper" id="certPaper">
+    <div class="cert-border"></div>
+    <button class="cert-close" onclick="closeCert()">✕</button>
+    <div class="cert-emblem">🏆</div>
+    <div class="cert-heading">Сертификат</div>
+    <div class="cert-org">zhon1 Academy</div>
+    <div class="cert-body">Осы сертификат</div>
+    <div class="cert-name" id="certName">—</div>
+    <div class="cert-body">Python Бағдарламалау курсын сәтті аяқтағанын растайды</div>
+    <div class="cert-course" id="certCourse">Python Бағдарламалау негіздері</div>
+    <div class="cert-meta">
+      <span><strong id="certDate">—</strong>Күні</span>
+      <span><strong id="certScore">—</strong>Ұпай</span>
+      <span><strong>15/15</strong>Лекция</span>
+    </div>
+    <button class="cert-download" onclick="downloadCert()">📥 Жүктеу (PDF)</button>
+  </div>
+</div>
+
+<!-- AI CHAT -->
+<button class="ai-fab" id="aiFab" onclick="toggleAI()" title="AI Көмекші">🤖</button>
+<div class="ai-window hidden" id="aiWindow">
+  <div class="ai-head">
+    <span class="ai-head-ico">🤖</span>
+    <span class="ai-head-title">AI Көмекші · Python</span>
+    <button class="ai-head-close" onclick="toggleAI()">✕</button>
+  </div>
+  <div class="ai-quick">
+    <button class="ai-quick-btn" onclick="aiQuick('Бұл тақырыпты түсіндір')">📖 Түсіндір</button>
+    <button class="ai-quick-btn" onclick="aiQuick('Мысал код жаз')">💻 Мысал</button>
+    <button class="ai-quick-btn" onclick="aiQuick('Жиі жіберілетін қателер')">⚠️ Қателер</button>
+    <button class="ai-quick-btn" onclick="aiQuick('Тапсырмаға кеңес бер')">💡 Кеңес</button>
+  </div>
+  <div class="ai-messages" id="aiMessages">
+    <div class="ai-msg bot">Сәлем! Мен Python AI көмекшісімін. Ағымдағы тақырып бойынша сұрақ қойыңыз — немесе жылдам батырмалар арқылы бастаңыз! 🐍</div>
+  </div>
+  <div class="ai-input-row">
+    <input class="ai-input" id="aiInput" placeholder="Сұрақ жаз..." onkeydown="if(event.key==='Enter')sendAI()">
+    <button class="ai-send" onclick="sendAI()">➤</button>
+  </div>
+</div>
+
+
+<script src="js/storage.js"></script>
+<script src="js/language.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/compiler.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
